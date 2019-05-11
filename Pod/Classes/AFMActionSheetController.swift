@@ -115,7 +115,7 @@ open class AFMActionSheetController: UIViewController {
         }
 
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(AFMActionSheetController.recognizeGestures(_:)))
-        swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.down
+        swipeGestureRecognizer.direction = UISwipeGestureRecognizer.Direction.down
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AFMActionSheetController.recognizeGestures(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
 
@@ -261,7 +261,7 @@ open class AFMActionSheetController: UIViewController {
             groupView.layer.cornerRadius = CGFloat(self.cornerRadius)
             groupView.translatesAutoresizingMaskIntoConstraints = false
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[groupView]-margin-|",
-                options: NSLayoutFormatOptions(),
+                                                                    options: NSLayoutConstraint.FormatOptions(),
                 metrics: ["margin": self.horizontalMargin],
                 views: ["groupView": groupView])
             )
@@ -271,7 +271,7 @@ open class AFMActionSheetController: UIViewController {
         setupGroupView(self.cancelGroupView)
 
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=topMargin)-[actionGroupView]-margin-[cancelGroupView]-margin-|",
-            options: NSLayoutFormatOptions(),
+                                                                options: NSLayoutConstraint.FormatOptions(),
             metrics: ["topMargin": self.topMargin, "margin": self.verticalMargin],
             views: ["actionGroupView": self.actionGroupView, "cancelGroupView": self.cancelGroupView])
         )
@@ -285,7 +285,7 @@ open class AFMActionSheetController: UIViewController {
         self.actionGroupView.layer.cornerRadius = CGFloat(self.cornerRadius)
         self.actionGroupView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[groupView]-margin-|",
-            options: NSLayoutFormatOptions(),
+                                                                options: NSLayoutConstraint.FormatOptions(),
             metrics: ["margin": self.horizontalMargin],
             views: ["groupView": self.actionGroupView])
         )
@@ -299,7 +299,7 @@ open class AFMActionSheetController: UIViewController {
             constant: 0))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=margin)-[actionGroupView]-(>=margin)-|",
-            options: NSLayoutFormatOptions(),
+                                                                options: NSLayoutConstraint.FormatOptions(),
             metrics: ["margin": self.topMargin],
             views: ["actionGroupView": self.actionGroupView]))
     }
@@ -322,7 +322,7 @@ open class AFMActionSheetController: UIViewController {
 
     private func horizontalConstraints(for view: UIView) -> [NSLayoutConstraint] {
         return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|",
-            options: NSLayoutFormatOptions(),
+                                              options: NSLayoutConstraint.FormatOptions(),
             metrics: nil,
             views: ["view": view])
     }
@@ -333,19 +333,19 @@ open class AFMActionSheetController: UIViewController {
         if let sibling = sibling {
             let format = "V:[view(>=height)]-spacing-[sibling]"
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: format,
-                options: NSLayoutFormatOptions(),
+                options: NSLayoutConstraint.FormatOptions(),
                 metrics: ["spacing": self.spacing, "height": height],
                 views: ["view": view, "sibling": sibling]) )
         } else {
             let format = "V:[view(>=height)]-0-|"
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: format,
-                options: NSLayoutFormatOptions(),
+                options: NSLayoutConstraint.FormatOptions(),
                 metrics: ["height": height],
                 views: ["view": view]) )
         }
         if isLast {
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]",
-                options: NSLayoutFormatOptions(),
+                options: NSLayoutConstraint.FormatOptions(),
                 metrics: nil,
                 views: ["view": view]) )
         }
@@ -467,8 +467,8 @@ extension UIButton {
     class func control(with action: AFMAction) -> UIButton {
         let button = UIButton()
         button.backgroundColor = UIColor.white
-        button.setTitle(action.title, for: UIControlState())
-        button.setTitleColor(UIColor.darkText, for: UIControlState())
+        button.setTitle(action.title, for: UIControl.State())
+        button.setTitleColor(UIColor.darkText, for: UIControl.State())
         button.setTitleColor(UIColor.darkText.withAlphaComponent(0.5), for: .disabled)
         button.setTitleColor(UIColor.red, for: .highlighted)
 
